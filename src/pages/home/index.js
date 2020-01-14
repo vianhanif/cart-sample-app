@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { addToCart } from '../../stores/cart/actions'
+import { addToCart, toggleDetail } from '../../stores/cart/actions'
 import './style.scss';
 
 class Home extends Component {
@@ -13,6 +13,17 @@ class Home extends Component {
   render() { 
     return (
       <div className="App">
+        {this.props.cart.showDetail ? 
+          <div>
+          <ul>
+            {
+              this.props.cart.items.map((item, i) => 
+              <li key={i}>
+                {item.product.name} {item.product.price * item.count}
+              </li>)
+            }
+          </ul>
+        </div> : null}
         <Link to="/admin/products/add">Add Products</Link>
         <ul>
           {
@@ -32,6 +43,7 @@ class Home extends Component {
             </li>)
           }
         </ul>
+        <button onClick={()=> this.props.toggleDetail()}>Detail</button>
       </div>
     );
   }
@@ -40,5 +52,5 @@ class Home extends Component {
 
 export default connect(
   state => ({ ...state }),
-  {addToCart}
+  {addToCart, toggleDetail}
 )(Home)

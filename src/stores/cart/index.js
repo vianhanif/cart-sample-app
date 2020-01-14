@@ -1,4 +1,5 @@
 const initialState = {
+  showDetail: false,
   items: []
 }
 
@@ -17,6 +18,12 @@ export default (state = initialState, action) => {
       }
       return {
         items: state.items
+      }
+    }
+    case 'toggle_detail': {
+      return {
+        ...state,
+        showDetail: !state.showDetail,
       }
     }
     default:
