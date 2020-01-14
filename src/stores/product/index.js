@@ -3,43 +3,31 @@ const initialState = {
       id: 1,
       name: 'Produk 1',
       price: 30000,
-      stock: 5,
     },
     {
       id: 2,
       name: 'Produk 2',
       price: 30000,
-      stock: 5,
     },
     {
       id: 3,
       name: 'Produk 3',
       price: 30000,
-      stock: 5,
     }
   ]
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'inc_stock': {
-      const {
-        id
-      } = action.payload
-      const item = state.items.find(item => item.id === id)
-      item.stock++
+    case 'add_product': {
+      let { items } = state
+      let {name, price} = action.payload
+      let id = state.items.length + 1
+      items.push({
+        id, name, price
+      })
       return {
-        items: state.items
-      }
-    }
-    case 'dec_stock': {
-      const {
-        id
-      } = action.payload
-      const item = state.items.find(item => item.id === id)
-      item.stock--
-      return {
-        items: state.items
+        items
       }
     }
     default: {

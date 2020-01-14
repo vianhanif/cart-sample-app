@@ -1,9 +1,4 @@
-export const incStock = (id) => ({
-  type: 'inc_stock',
-  payload: {id}
-})
-
-export const decStock = (id) => ({
-  type: 'dec_stock',
-  payload: {id}
+export const addProduct = ({name, price, stock}) => ({
+  type: 'add_product',
+  payload: {name, price, stock}
 })
