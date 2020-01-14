@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { addProduct } from '../../stores/product/actions'
+import Input from '../../components/Input'
+import { Link } from 'react-router-dom'
+import BaseLayout from '../../layouts/base'
 import './style.scss';
 
 class Admin extends Component {
@@ -12,6 +15,10 @@ class Admin extends Component {
     }
   }
 
+  isDataValid() {
+    return this.state.name === '' || !this.state.price
+  }
+
   handleAddProduct() {
     this.props.addProduct(this.state)
     this.props.history.push("/")
@@ -19,12 +26,19 @@ class Admin extends Component {
 
   render() { 
     return (
-      <div className="App">
-        <label>Name</label>
-        <input type="text" onChange={(e) => this.setState({name: e.target.value})} name="name"/>
-        <label>Price</label>
-        <input type="number" onChange={(e) => this.setState({price: e.target.value})} name="name"/>
-        <button onClick={()=>{this.handleAddProduct()}}>Add</button>
+      <div className="page-container">
+        <div className="page-heading">
+          <BaseLayout>
+            <Link to="/">Home</Link>
+          </BaseLayout>
+        </div>
+        <div className="page-form">
+          <div className="form-container">
+            <Input label="Name" type="text" onChange={value => this.setState({name: value})}/>
+            <Input label="Price" type="number" onChange={value => this.setState({price: value})}/>
+            <button disabled={this.isDataValid()} onClick={()=>{this.handleAddProduct()}}>Add</button>
+          </div>
+        </div>
       </div>
     );
   }

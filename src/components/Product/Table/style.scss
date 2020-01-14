@@ -1,0 +1,31 @@
+@import '../../../styles/index.scss';
+
+.table {
+  &-container {
+   
+  }
+  &-body {
+    border-collapse: collapse;
+    td, th {
+      border-right: 1px solid $accent;
+      text-align: left;
+      padding: 8px;
+    }
+    .caption {
+      font-weight: 600;
+    }
+    
+    tr:nth-child(even) {
+      background-color: $secondary_background;
+    }
+    tr:last-child {
+      border-bottom: 0px;
+      background-color: $secondary_background;
+    }
+    tr {
+      td:last-child, th:last-child {
+        border-right: 0px;
+      }
+    }
+  }
+}

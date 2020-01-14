@@ -1,3 +1,6 @@
+@import './variables.scss';
+@import './page.scss';
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -6,8 +9,18 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: $text;
+  opacity: .8;
+  &:hover {
+    opacity: 1;
+  }
+}
+button {
+  cursor: pointer;
+  &:disabled {
+    opacity: .6;
+  }
 }

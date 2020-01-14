@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addToCart, toggleDetail } from '../../stores/cart/actions'
+import Product from '../../components/Product'
+import Modal from '../../components/Modal'
+import ProductTable from '../../components/Product/Table'
+import HoverCart from '../../components/HoverCart'
+import BaseLayout from '../../layouts/base'
+import { toCurrency } from '../../modules/currency'
 import './style.scss';
 
 class Home extends Component {
@@ -10,40 +16,53 @@ class Home extends Component {
     this.state = {  }
   }
 
+  getTotal() {
+    let total = 0
+    this.props.cart.items.forEach(item => {
+      total += item.count * item.product.price
+    });
+    return toCurrency(total, 'IDR')
+  }
+
   render() { 
     return (
-      <div className="App">
-        {this.props.cart.showDetail ? 
-          <div>
-          <ul>
-            {
-              this.props.cart.items.map((item, i) => 
-              <li key={i}>
-                {item.product.name} {item.product.price * item.count}
-              </li>)
-            }
-          </ul>
-        </div> : null}
-        <Link to="/admin/products/add">Add Products</Link>
-        <ul>
-          {
-            this.props.product.items.map((item, i) => 
-            <li key={i}>
-              {item.name} {item.stock}
-              <button onClick={()=>{this.props.addToCart(item)}}>Add</button>
-            </li>)
+      <div className="page-container">
+        <Modal onClick={this.props.toggleDetail} active={this.props.cart.showDetail}>
+          <ProductTable items={this.props.cart.items} subtotal={this.getTotal()}/>
+        </Modal>
+        <div className="page-heading">
+          <BaseLayout>
+            <Link to="/admin/products/add">Add Product</Link>
+          </BaseLayout>
+        </div>
+        
+        <div className="page-body">
+          <BaseLayout>
+            <div className="product-list-container">
+              {
+                this.props.product.items.map((item, i) => 
+                <Product 
+                key={i}
+                {...item}
+                onClick={()=>{this.props.addToCart(item)}}/>
+                )
+              }
+            </div>
+          </BaseLayout>
+        </div>
+        <div className="page-footer">
+          {this.props.cart.items.length >= 1 ? 
+          <BaseLayout>
+            <div className="cart-container">
+              <HoverCart 
+                  caption={`${this.props.cart.items.length} items`}
+                  title={this.getTotal()}
+                  subtitle={`Subtotal`}
+                  onClick={()=> this.props.toggleDetail()}/>
+            </div>
+          </BaseLayout>: null
           }
-        </ul>
-        <label>Cart</label>
-        <ul>
-          {
-            this.props.cart.items.map((item, i) => 
-            <li key={i}>
-              {item.product.name} {item.product.price * item.count}
-            </li>)
-          }
-        </ul>
-        <button onClick={()=> this.props.toggleDetail()}>Detail</button>
+        </div>
       </div>
     );
   }
