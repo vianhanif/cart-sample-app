@@ -13,7 +13,7 @@ export default () => {
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <Route exact path="/" component={Home}></Route>
-        <Route exact path="/admin/products/add" component={Admin}></Route>
+        <Route path="/admin/products/add" component={Admin}></Route>
       </ConnectedRouter>
     </Provider>
   )

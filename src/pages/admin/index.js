@@ -4,6 +4,7 @@ import { addProduct } from '../../stores/product/actions'
 import Input from '../../components/Input'
 import { Link } from 'react-router-dom'
 import BaseLayout from '../../layouts/base'
+import InputForm from '../../components/Input/Form'
 import './style.scss';
 
 class Admin extends Component {
@@ -33,11 +34,11 @@ class Admin extends Component {
           </BaseLayout>
         </div>
         <div className="page-form">
-          <div className="form-container">
-            <Input label="Name" type="text" onChange={value => this.setState({name: value})}/>
-            <Input label="Price" type="number" onChange={value => this.setState({price: value})}/>
+          <InputForm>
+            <Input label="Name" hint="Ayam Goreng" type="text" onChange={value => this.setState({name: value})}/>
+            <Input label="Price" hint="Rp 30.000,00" type="number" onChange={value => this.setState({price: value})}/>
             <button disabled={this.isDataValid()} onClick={()=>{this.handleAddProduct()}}>Add</button>
-          </div>
+          </InputForm>
         </div>
       </div>
     );

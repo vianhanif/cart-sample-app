@@ -10,6 +10,16 @@
     align-items: center;
     margin-bottom: 20px;
     max-width: 500px;
+    opacity: 0;
+    &-enter {
+      transform: translate(0px, 0px);
+      &-active, &-done {
+        opacity: 1;
+        transform: translate(0px, -40px);
+        transition: all 200ms ease-in-out;
+      }
+    }
+
     @include tablet {
       min-width: 100%;
     }
@@ -27,13 +37,14 @@
   }
   &-title {
     display: flex;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 22px;
-    color: $accent;
+    color: $text;
   }
   &-subtitle {
     display: flex;
     font-size: 14px;
+    color: $button;
   }
   &-aside {
     cursor: pointer;

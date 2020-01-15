@@ -18,7 +18,7 @@ const initialState = {
       price: 30000,
     },
     {
-      id: 3,
+      id: 4,
       name: 'Indomie Rebus & Tuna',
       image: 'http://media.coreperformance.com/images/411*308/knowledge-protein1.jpg',
       price: 30000,

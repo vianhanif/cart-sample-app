@@ -1,5 +1,10 @@
 
 
 export const toCurrency = (price, currency = 'IDR') => {
-  return price.toLocaleString('id-ID', { style: 'currency', currency: currency });
+  const formatter = new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0
+  })
+  return formatter.format(price)
 }

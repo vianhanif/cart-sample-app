@@ -1,16 +1,33 @@
 @import '../../styles/index.scss';
 
 .modal {
-  display: none;
-  &--active{
-    z-index: 99;
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: $shadow;
+  z-index: 99;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $shadow;
+  opacity: 0;
+  &-enter {
+    @extend .modal;
+    transform: translate(0px, 30px);
+    &-active, &-done {
+      transform: translate(0px, 0px);
+      opacity: 1;
+      transition: all 200ms ease-in-out;
+    }
+  }
+  &-exit, &-leave {
+    @extend .modal;
+    transform: translate(0px, 0px);
+    opacity: 1;
+    &-active, &-done {
+      transform: translate(0px, 30px);
+      opacity: 0;
+      transition: all 200ms ease-in-out;
+    }
   }
   &-body {
     background-color: $secondary_background;

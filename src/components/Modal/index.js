@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
+import { CSSTransition } from 'react-transition-group'
 import './style.scss'
 
+const duration = 100
+
 class Modal extends Component {
-  state = {  }
+  state = { }
+
   render() { 
     return (
-      <div onClick={() => this.props.onClick()} className={`modal${this.props.active ? '--active' : ''}`}>
-        <div className="modal-body">
-          {this.props.children}
+      <CSSTransition in={this.props.active} unmountOnExit timeout={duration} classNames="modal">
+        <div onClick={() => this.props.onClick()} className="modal">
+          <div className="modal-body">
+            {this.props.children}
+          </div>
         </div>
-      </div>
+      </CSSTransition>
     );
   }
 }

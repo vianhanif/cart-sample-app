@@ -16,6 +16,10 @@ class Home extends Component {
     this.state = {  }
   }
 
+  getCartTotal() {
+    return this.props.cart.items.length
+  }
+
   getTotal() {
     let total = 0
     this.props.cart.items.forEach(item => {
@@ -27,7 +31,7 @@ class Home extends Component {
   render() { 
     return (
       <div className="page-container">
-        <Modal onClick={this.props.toggleDetail} active={this.props.cart.showDetail}>
+         <Modal onClick={this.props.toggleDetail} active={this.props.cart.showDetail}>
           <ProductTable items={this.props.cart.items} subtotal={this.getTotal()}/>
         </Modal>
         <div className="page-heading">
@@ -51,11 +55,11 @@ class Home extends Component {
           </BaseLayout>
         </div>
         <div className="page-footer">
-          {this.props.cart.items.length >= 1 ? 
+          {this.getCartTotal() >= 1 ? 
           <BaseLayout>
             <div className="cart-container">
               <HoverCart 
-                  caption={`${this.props.cart.items.length} items`}
+                  caption={`${this.getCartTotal()} item${this.getCartTotal() > 1 ? 's' : ''}`}
                   title={this.getTotal()}
                   subtitle={`Subtotal`}
                   onClick={()=> this.props.toggleDetail()}/>
