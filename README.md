@@ -1,5 +1,9 @@
 ## Cart Sample App
 
+Demo : https://cart-sample-app.netlify.com
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/36f43b70-28cc-4d63-bce0-08fed3c52b52/deploy-status)](https://app.netlify.com/sites/modest-nobel-05c38c/deploys)
+
 #### Tech in use :
 - create-react-app
 - react-router
