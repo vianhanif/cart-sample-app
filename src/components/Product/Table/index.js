@@ -22,7 +22,7 @@ class Table extends Component {
                 <tr className="table-row" key={i}>
                   <td>{item.product.name}</td>
                   <td>{toCurrency(item.product.price)}</td>
-                  <td>{item.count}</td>
+                  <td className="center">{item.count}</td>
                   <td>{toCurrency(item.count * item.product.price)}</td>
                 </tr>
               )

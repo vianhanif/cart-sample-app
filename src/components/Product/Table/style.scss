@@ -2,7 +2,9 @@
 
 .table {
   &-container {
-   
+    .center {
+      text-align: center;
+    }
   }
   &-body {
     border-collapse: collapse;
