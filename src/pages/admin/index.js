@@ -34,12 +34,14 @@ class Admin extends Component {
           </BaseLayout>
         </div>
         <div className="page-form">
-          <InputForm>
-            <Input label="Name" hint="Ayam Goreng" type="text" onChange={value => this.setState({name: value})}/>
-            <Input label="Price" hint="Rp 30.000,00" type="number" onChange={value => this.setState({price: value})}/>
-            <Input label="Description" hint="Paket Nasi dengan ayam goreng pedas" type="textarea" onChange={value => this.setState({price: value})}/>
-            <button disabled={this.isDataValid()} onClick={()=>{this.handleAddProduct()}}>Add</button>
-          </InputForm>
+          <BaseLayout>
+            <InputForm>
+              <Input label="Name" hint="Ayam Goreng" type="text" onChange={value => this.setState({name: value})}/>
+              <Input label="Price" hint="Rp 30.000,00" type="number" onChange={value => this.setState({price: value})}/>
+              <Input label="Description" hint="Paket Nasi dengan ayam goreng pedas" type="textarea" onChange={value => this.setState({price: value})}/>
+              <button disabled={this.isDataValid()} onClick={()=>{this.handleAddProduct()}}>Add</button>
+            </InputForm>
+          </BaseLayout>
         </div>
       </div>
     );
