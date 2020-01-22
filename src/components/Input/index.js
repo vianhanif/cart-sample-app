@@ -12,7 +12,7 @@ class Input extends Component {
           val = '0'
         }
         let number = Number(val)
-        this.props.onChange(number)
+        this.props.onChange(val)
         this.setState({value: number.toLocaleString()})
       }
       break
